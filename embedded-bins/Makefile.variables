@@ -5,9 +5,9 @@ kine_version = 0.6.0
 etcd_version = 3.4.15
 konnectivity_version = 0.0.16
 
-containerd_buildimage = golang:1.15-alpine
-etcd_buildimage = golang:1.13-alpine
-kine_buildimage = golang:1.15-alpine
-konnectivity_buildimage = golang:1.15-alpine
-kubernetes_buildimage = golang:1.16-alpine
-runc_buildimage = golang:1.15-alpine
+containerd_buildimage = mirantiseng/fipster:go1.15.12m1-alpine-3-cryptocomply
+etcd_buildimage = mirantiseng/fipster:go1.15.12m1-alpine-3-cryptocomply
+kine_buildimage = mirantiseng/fipster:go1.15.12m1-alpine-3-cryptocomply
+konnectivity_buildimage = mirantiseng/fipster:go1.15.12m1-alpine-3-cryptocomply
+kubernetes_buildimage = mirantiseng/fipster:go1.16.4m1-alpine-3-cryptocomply
+runc_buildimage = mirantiseng/fipster:go1.15.12m1-alpine-3-cryptocomply

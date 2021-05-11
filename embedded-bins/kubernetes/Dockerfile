@@ -10,6 +10,7 @@ RUN apk add build-base git go-bindata linux-headers rsync grep coreutils bash
 RUN mkdir -p $GOPATH/src/github.com/kubernetes/kubernetes
 RUN git clone -b v$VERSION --depth=1 https://github.com/kubernetes/kubernetes.git $GOPATH/src/github.com/kubernetes/kubernetes
 WORKDIR /go/src/github.com/kubernetes/kubernetes
+RUN go version
 RUN \
 	for cmd in $COMMANDS; do \
 		export KUBE_GIT_VERSION="v$VERSION-k0s1"; \

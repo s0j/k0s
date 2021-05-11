@@ -21,6 +21,7 @@ RUN make -C /libseccomp-$LIBSECCOMP_VERSION install
 RUN mkdir -p $GOPATH/src/github.com/opencontainers/runc
 RUN git clone -b v$VERSION --depth=1 https://github.com/opencontainers/runc.git $GOPATH/src/github.com/opencontainers/runc
 WORKDIR /go/src/github.com/opencontainers/runc
+RUN go version
 RUN make EXTRA_LDFLAGS="-extldflags=-static -w -s"
 
 FROM scratch
