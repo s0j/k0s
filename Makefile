@@ -48,7 +48,6 @@ GO ?= GOCACHE=/tmp/.cache docker run --rm -v "$(CURDIR)":/go/src/github.com/k0sp
 	-e CGO_ENABLED \
 	-e GOARCH \
 	-e GOCACHE \
-	--user $$(id -u) \
 	$(GOLANG_IMAGE) go
 
 .PHONY: build
@@ -88,7 +87,7 @@ k0s.exe: pkg/assets/zz_generated_offsets_windows.go
 k0s.exe k0s: static/gen_manifests.go
 
 k0s.exe k0s: $(GO_SRCS)
-	CGO_ENABLED=0 GOOS=$(TARGET_OS) GOARCH=$(GOARCH) $(GO) build -v -ldflags="$(LD_FLAGS)" -o $@.code main.go
+	CGO_ENABLED=1 GOOS=$(TARGET_OS) GOARCH=$(GOARCH) $(GO) build -v -ldflags='$(LD_FLAGS) -extldflags "-static"' -buildmode=pie -o $@.code main.go
 	cat $@.code bindata_$(TARGET_OS) > $@.tmp \
 		&& rm -f $@.code \
 		&& chmod +x $@.tmp \
