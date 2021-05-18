@@ -1,13 +1,47 @@
 runc_version = 1.0.0-rc93
-containerd_version = 1.4.4
-kubernetes_version = 1.21.0
-kine_version = 0.6.0
-etcd_version = 3.4.15
-konnectivity_version = 0.0.16
+runc_buildimage = mirantiseng/fipster:go1.15.12m2-alpine-3-cryptocomply
+runc_build_go_tags = "seccomp,fips_forced"
+runc_build_go_cgo_enabled = 1
+#runc_build_go_flags =
+#runc_build_go_ldflags =
+runc_build_go_ldflags_extra = "-w -s -extldflags=-static"
 
-containerd_buildimage = golang:1.15-alpine
-etcd_buildimage = golang:1.13-alpine
-kine_buildimage = golang:1.15-alpine
-konnectivity_buildimage = golang:1.15-alpine
-kubernetes_buildimage = golang:1.16-alpine
-runc_buildimage = golang:1.15-alpine
+containerd_version = 1.4.4
+containerd_buildimage = mirantiseng/fipster:go1.15.12m2-alpine-3-cryptocomply
+containerd_build_go_tags = "apparmor,selinux,fips_forced"
+containerd_build_go_cgo_enabled = 1
+#containerd_build_go_flags =
+#containerd_build_go_ldflags =
+containerd_build_go_ldflags_extra = "-w -s -extldflags=-static"
+
+kubernetes_version = 1.21.0
+kubernetes_buildimage = mirantiseng/fipster:go1.16.4m2-alpine-3-cryptocomply
+kubernetes_build_go_tags = "providerless,fips_forced"
+kubernetes_build_go_cgo_enabled = 1
+kubernetes_build_go_flags = "-v"
+#kubernetes_build_go_ldflags =
+kubernetes_build_go_ldflags_extra = "-w -s -extldflags=-static"
+
+kine_version = 0.6.0
+kine_buildimage = mirantiseng/fipster:go1.15.12m2-alpine-3-cryptocomply
+kine_build_go_tags = "fips_forced"
+kine_build_go_cgo_enabled = 1
+#kine_build_go_flags =
+kine_build_go_ldflags = "-w -s"
+kine_build_go_ldflags_extra = "-extldflags=-static"
+
+etcd_version = 3.4.15
+etcd_buildimage = mirantiseng/fipster:go1.15.12m2-alpine-3-cryptocomply
+etcd_build_go_tags = "fips_forced"
+etcd_build_go_cgo_enabled = 1
+#etcd_build_go_flags =
+etcd_build_go_ldflags = "-w -s"
+etcd_build_go_ldflags_extra = "-extldflags=-static"
+
+konnectivity_version = 0.0.16
+konnectivity_buildimage = mirantiseng/fipster:go1.15.12m2-alpine-3-cryptocomply
+konnectivity_build_go_tags = "fips_forced"
+konnectivity_build_go_cgo_enabled = 1
+#konnectivity_build_go_flags =
+konnectivity_build_go_ldflags = "-w -s"
+konnectivity_build_go_ldflags_extra = "-extldflags=-static"
