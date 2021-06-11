@@ -284,6 +284,16 @@ func (c *CmdOpts) startController() error {
 		leaderElector,
 		adminClientFactory))
 
+	if c.EnableControllerCloudProvider {
+		componentManager.Add(
+			controller.NewControllerCloudProvider(
+				c.K0sVars.AdminKubeConfigPath,
+				c.ControllerCloudProviderUpdateFrequency,
+				c.ControllerCloudProviderPort,
+			),
+		)
+	}
+
 	perfTimer.Checkpoint("starting-component-init")
 	// init components
 	if err := componentManager.Init(); err != nil {
